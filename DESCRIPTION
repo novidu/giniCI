@@ -21,3 +21,5 @@ Imports:
     ggpubr (>= 0.6.0)
 Suggests: R.rsp
 VignetteBuilder: R.rsp
+URL: https://github.com/novidu/giniCI
+BugReports: https://github.com/novidu/giniCI/issues

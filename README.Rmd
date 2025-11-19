@@ -33,6 +33,12 @@ You can install the latest released version from CRAN:
 install.packages("giniCI")
 ```
 
+Alternatively, you can install the development version from GitHub:
+
+``` r
+devtools::install_github("novidu/giniCI", build_vignettes = TRUE)
+```
+
 ## Usage
 
 Below is a simple example of constructing Gini-based composite indicators. For
