@@ -12,15 +12,12 @@ authors:
     surname: Nguyen
     orcid: 0009-0001-0227-3112
     corresponding: true 
-    equal-contrib: true
     affiliation: 1
   - name: Chiara Gigliarano
     orcid: 0000-0003-2861-1316
-    equal-contrib: true
     affiliation: 1
   - name: Mariateresa Ciommi
     orcid: 0000-0003-4131-4543
-    equal-contrib: true
     affiliation: 2
 affiliations:
  - name: Università Carlo Cattaneo -- LIUC, Castellanza (VA), Italy
@@ -226,7 +223,7 @@ factors are present), which can be stored and printed. The plots are
 customizable, allowing users to adjust colors, sizes, shapes, and label
 displays to meet the desired results.
 
-![Rank scatter plot for two ranking systems in 2014. The figure illustrates
+![Example of a rank scatter plot for two ranking systems. The figure illustrates
 the relationship between two rankings using a two-dimensional scatter plot.
 A 45-degree reference line can be added to  facilitate the classification of
 ranking changes. Units located below the reference line indicate an improvement
@@ -234,7 +231,7 @@ in performance, whereas those above the line indicate a deterioration. Units
 positioned on the reference line have identical rankings in both indices.
 \label{fig:rank_scatter}](p1.pdf){width=60%}
 
-![Rank shift plot for two ranking systems in 2015. The figure depicts changes
+![Example of a rank shift plot for two ranking systems. The figure depicts changes
 in ranking by representing each unit as a pair of vertically aligned points. 
 The first point (default: black-bordered circle) corresponds to the unit's 
 position in the reference ranking, and the second point (default: solid red
