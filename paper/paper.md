@@ -1,6 +1,6 @@
 ---
-title: "giniCI: An R package for constructing composite indicators with 
-  Gini-based weighting approaches"
+title: "giniCI: An R Package for Constructing Composite Indicators with 
+  Gini-based Weighting Approaches"
 tags:
   - R
   - composite indicators
@@ -10,16 +10,16 @@ tags:
 authors:
   - given-names: Viet Duong
     surname: Nguyen
-    orcid: 0000-0000-0000-0000
+    orcid: 0009-0001-0227-3112
     corresponding: true 
     equal-contrib: true
     affiliation: 1
   - name: Chiara Gigliarano
-    orcid: 0000-0000-0000-0000
+    orcid: 0000-0003-2861-1316
     equal-contrib: true
     affiliation: 1
   - name: Mariateresa Ciommi
-    orcid: 0000-0000-0000-0000
+    orcid: 0000-0003-4131-4543
     equal-contrib: true
     affiliation: 2
 affiliations:
@@ -108,8 +108,7 @@ sources. The accompanying `summary.rankComp()` method produces a set of
 descriptive statistics summarizing consistency in ranking between the
 reference and the alternative score set. To complement the numerical
 summaries, the package includes several plotting functions designed to
-enhance interpretability: `rankScatterPlot()`, `rankShiftPlot()`, and
-`rankRankPlot()`. Together, these tools provide an integrated
+enhance interpretability. Together, these tools provide an integrated
 environment for both quantitative and graphical analysis.
 
 ![Graphical illustration of composite indicator construction using
@@ -119,7 +118,7 @@ rounded boxes represent package functions. \label{fig:structure}](diagram.pdf){w
 ## Data Normalization
 
 The `normalize()` function standardizes input variables so that they are
-comparable in scale and direction of contribution to the index. Two methods
+comparable in scale and direction of contribution to the composite index. Two methods
 are available: `"min–max"`, which rescales each variable to the [0,1] range,
 and `"goalpost"` [@maz2016], which maps indicators to a user-defined range
 (default [70,130]) with the midpoint as their reference values. Both methods
@@ -135,7 +134,7 @@ consistent (even when future data is added), enabling unbiased comparisons
 over time. 
 ``` {.R bgcolor="bg"}
 data(bli)
-# Define indicators' polatity
+# Indicators' polatity
 bli.pol <- c("neg", "pos", "pos", "pos", "pos", "neg",
              "pos", "pos", "pos", "neg", "pos")
 # Goalpost normalization with 2014 as the reference time  
@@ -151,13 +150,13 @@ The core function `giniCI()` aggregates normalized data into a single index
 using alternative weighting schemes. Users can choose among three options:
 `"equal"` (equal weights), `"gini"` (Gini-based weights), and `"reci"`
 (reciprocal Gini-based weights). Aggregation can be performed using either 
-weighted arithmetic or geometric means, and an option for horizontal 
-variability adjustment (`hv = TRUE`) can be applied to penalize within-unit 
+the arithmetic or the geometric mean, with an option for horizontal 
+variability adjustment (`hv = TRUE`) to penalize within-unit 
 imbalance [@demu2011]. This ensures that the resulting index reflects both
-inter-unit inequality and intra-unit dispersion. Below is the code snippet
+inter-unit inequality and intra-unit dispersion. Below, we present a code snippet
 for generating well-being (positive-polarity) composite indicators using
 the Gini-based weighted arithmetic aggregation and the reciprocal Gini-based
-weighted geometric aggregation, with the normalized data from the previous
+weighted geometric aggregation, based on the normalized inputs from the previous
 step.
 
 ``` {.R bgcolor="bg"}
@@ -171,12 +170,11 @@ bli.reci <- giniCI(bli.norm.2014,
 
 ### Ranking Comparison and Visualization
 
-The ranking comparison functionality in the package is designed to evaluate
+The ranking comparison functionality in the package is designed to evaluate the
 consistency between a reference index and an alternative index. The function
-`rankComp()` performs ranking shift analysis and summarizes changes through 
-key measures such as the average shift in ranking (ASR), the percentage of
-equal rankings (PER), and the average shift in quantile rankings (ASQ)
-[@mar2024].   
+`rankComp()` performs a ranking shift analysis and summarizes changes through 
+key measures such as the average shift in ranking, the percentage of
+equal rankings, and the average shift in quantile rankings [@mar2024].   
 
 ``` {.R bgcolor="bg"}
 ci.gini <- giniCI(bli.norm.2014, method = "gini",
@@ -221,49 +219,45 @@ ci.comp <- rankComp(ci.gini, ci.reci,
 For visualization, three functions `rankScatterPlot()`, `rankShiftPlot()`,
 and `rankRankPlot()` graphically illustrate ranking stability and movement
 across time or computational settings, highlighting the impact of parameter
-configurations on index performance (\autoref{fig:rank_scatter, 
+configurations on index performance (\autoref{fig:rank_scatter}, 
 \autoref{fig:rank_shift}, and \autoref{fig:rank_rank}). These
 functions return a plot object (or a list of plot objects if temporal
 factors are present), which can be stored and printed. The plots are
 customizable, allowing users to adjust colors, sizes, shapes, and label
 displays to meet the desired results.
 
-![Rank scatter plot for two ranking systems in 2014. `rankScatterPlot()` 
-depicts the relationship between two ranking systems using a two-dimensional
-scatter plot. Each dot's position on the horizontal and vertical axes 
-corresponds to a unit's ranking according to the reference and alternative
-indices. A 45-degree reference line can be added for classifying ranking 
-changes. Units located in the lower half-plane indicate an improvement in
-performance, while those in the upper half-plane indicate a decline in 
-performance. Units positioned on the reference line have identical rankings
-in both indices.
-\label{fig:rank_scatter}](p1.pdf){width=70%}
+![Rank scatter plot for two ranking systems in 2014. The figure illustrates
+the relationship between two rankings using a two-dimensional scatter plot.
+A 45-degree reference line can be added to  facilitate the classification of
+ranking changes. Units located below the reference line indicate an improvement
+in performance, whereas those above the line indicate a deterioration. Units
+positioned on the reference line have identical rankings in both indices.
+\label{fig:rank_scatter}](p1.pdf){width=60%}
 
-![Rank shift plot for two ranking systems in 2015. `rankShiftPlot()` 
-represents shifts in ranking by displaying each unit as a pair of vertically
-aligned points: the first point (default: black-bordered circle) corresponds
-to the unit's position in the reference ranking, and the second point 
-(default: solid red circle) corresponds to its position in the alternative
-ranking. These points are connected by a line segment, enabling users to 
-identify the direction and magnitude of ranking shifts. If the reference 
-and alternative points for a unit overlap, it signifies that the unit's 
-ranking remains unchanged.
-\label{fig:rank_scatter}](p2.pdf){width=70%}
+![Rank shift plot for two ranking systems in 2015. The figure depicts changes
+in ranking by representing each unit as a pair of vertically aligned points. 
+The first point (default: black-bordered circle) corresponds to the unit's 
+position in the reference ranking, and the second point (default: solid red
+circle) corresponds to its position in the alternative ranking. These points
+are connected by a line segment, allowing users to identify both the direction
+and magnitude of ranking shifts. When the reference and alternative points
+overlap, the unit’s ranking remains unchanged.
+\label{fig:rank_shift}](p2.pdf){width=60%}
 
-![Rank-rank plot for two ranking systems in 2016. `rankRankPlot()` arranges
+![Rank-rank plot for two ranking systems in 2016. The figure arranges 
 two ranking systems side by side and uses connecting lines to visualize how
 the position of each unit changes between them. Upward-sloping segments 
 indicate an improvement in the alternative ranking compared to the reference
 ranking, while downward-sloping segments indicate a decline. The length of
 non-horizontal segments represent the magnitude of ranking shifts, with longer
 segments highlighting more substantial changes in position.
-\label{fig:rank_rank}](p3.pdf){width=70%}{width=70%}
+\label{fig:rank_rank}](p3.pdf){width=60%}
 
 # Licensing and Availability
 
-`giniCI` is licensed under the GNU General Public License (v3.0). The source
-code is publicly available on GitHub (https://github.com/novidu/giniCI),
-with a corresponding issue tracker.
+`giniCI` is licensed under the GNU General Public License (GPL, version 3.0).
+The source code is publicly available on GitHub (https://github.com/novidu/giniCI),
+where users can also access the corresponding issue tracker.
 
 
 # Acknowledgements {#acknowledgements .unnumbered}
